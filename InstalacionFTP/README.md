@@ -1,6 +1,6 @@
 # Instalación y administración de servidores de transferencia de archivos
 
-![logo]()
+![logo](https://github.com/Regnierd/FTP/blob/main/InstalacionFTP/img/logo.png)
 
 ## Índice
 
