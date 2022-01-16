@@ -1,6 +1,6 @@
 # Construccion de un servicio de empresa
 
-![logo]()
+![logo](https://github.com/Regnierd/FTP/blob/main/ConstruccionServicioEmpresa/img/logo.png)
 
 ## Índice
 
@@ -27,96 +27,96 @@ Para MySQL y PHPMyAdmin usaremos contenedores Docker, lo que quiere decir es que
 ### 2. Instalar PHP y Apache
 Como hemos dicho anteriormente empezaremos a instalar Apache en nuestro equipo, con el comando <b>sudo apt install apache2</b>.
 
-![1]()
+![1](https://github.com/Regnierd/FTP/blob/main/ConstruccionServicioEmpresa/img/1.png)
 
 Cuando acabe la instalación, procedemos a instalar PHP, usando el mismo comando anterior pero cambiando el nombre.
 
-![2]()
+![2](https://github.com/Regnierd/FTP/blob/main/ConstruccionServicioEmpresa/img/2.png)
 
 Una vez acabada la instalación de PHP, comenzaremos a configurar Apache. Para ello activaremos el firewall de Apache. Usaremos los siguiente comando: <b>sudo ufw app list</b>  (para ver todos las aplicaciones que tenemos para activar), para activar Apache usaremos <b>sudo ufw allow ‘Apache’</b>.
 
-![3]()
+![3](https://github.com/Regnierd/FTP/blob/main/ConstruccionServicioEmpresa/img/3.png)
 
 Para comprobar que se activó usaremos el comando <b> sudo ufw status</b>.
 
-![4]()
+![4](https://github.com/Regnierd/FTP/blob/main/ConstruccionServicioEmpresa/img/4.png)
 
 <a name="3"></a>
 
 ### 3. Comprobación de Apache
 Para comprobar que el servicio de Apache funciona correctamente, abrimos un navegador y escribimos en la URL <b>localhost</b>. Podemos ver que se abrió la página principal de Apache2.
 
-![5]()
+![5](https://github.com/Regnierd/FTP/blob/main/ConstruccionServicioEmpresa/img/5.png)
 
 Para poder acceder con el dominio que nos pidió el cliente (www.nombresystem.com) tendremos que agregarlo al sistema como localhost. Para ello iremos al archivo<b> /etc/hosts</b> y lo agregamos.
 
-![6]()
+![6](https://github.com/Regnierd/FTP/blob/main/ConstruccionServicioEmpresa/img/7.png)
 
 <a name="4"></a>
 
 ### 4. Configuración del sitio web
 A continuación es la hora de configurar nuestro sitio web. Crearemos un archivo en la siguiente ruta <b>/etc/apache2/sites-available</b> donde van todos nuestros sitios web que queramos. 
 
-![7]()
+![7](https://github.com/Regnierd/FTP/blob/main/ConstruccionServicioEmpresa/img/6.png)
 
 En el nuevo fichero escribimos el siguiente código que vemos en la imagen.
 
-![8]()
+![8](https://github.com/Regnierd/FTP/blob/main/ConstruccionServicioEmpresa/img/9.png)
 
 Después de crear el fichero anterior tendremos que habilitar el fichero en otro directorio, para que el servicio de Apache pueda trabajar con él. Usaremos el siguiente comando: <b>sudo a2ensite nombresystem.conf</b>.
 
-![9]()
+![9](https://github.com/Regnierd/FTP/blob/main/ConstruccionServicioEmpresa/img/13.png)
 
 Por último, tendremos que reiniciar el servicio de Apache, para ello usaremos el siguiente comando: <b>sudo systemctl restart apache2</b>.
 
-![10]()
+![10](https://github.com/Regnierd/FTP/blob/main/ConstruccionServicioEmpresa/img/10.png)
 
 Comprobamos el estado del servicio.
 
-![11]()
+![11](https://github.com/Regnierd/FTP/blob/main/ConstruccionServicioEmpresa/img/11.png)
 
 Ahora volvemos al navegador y escribimos en la URL que definimos anteriormente, para poder comprobar que ha detectado nuestro nuevo dominio.
 
-![12]()
+![12](https://github.com/Regnierd/FTP/blob/main/ConstruccionServicioEmpresa/img/12.png)
 
 Para tener algo que mostrar en el navegador, crearemos un fichero .html en la ruta que pusimos en el fichero anterior: <b>/var/www/javierlpsystem</b>. Tendremos el siguiente código html.
 
-![13]()
+![13](https://github.com/Regnierd/FTP/blob/main/ConstruccionServicioEmpresa/img/8.png)
 
 Una vez hecho esto volvemos al navegador y recargamos la página y nos debería de mostrar lo que pusimos en el fichero .html.
 
-![14]()
+![14](https://github.com/Regnierd/FTP/blob/main/ConstruccionServicioEmpresa/img/14.png)
 
 <a name="5"></a>
 
 ### 5. Añadiendo subdominio /sftp
 Como el cliente nos ha pedido un subdominio con los ficheros que tenemos en el sistema para poder verlos, tendremos que crear un nuevo alias y asignarle el directorio especificado como veremos en la siguiente imagen. En nuestro caso el alias será <b>/sftp</b> el cual apuntará al directorio <b>“/var/www/javierlpsystem/sftp”.</b>
 
-![15]()
+![15](https://github.com/Regnierd/FTP/blob/main/ConstruccionServicioEmpresa/img/17.png)
 
 Volvemos a reiniciar el servicio de Apache para que se apliquen los cambios.
 
-![16]()
+![16](https://github.com/Regnierd/FTP/blob/main/ConstruccionServicioEmpresa/img/10.png)
 
 Vamos al navegador y agregamos a la URL www.javierlp.com/<b>sftp</b> y podremos ver todos los ficheros que se encuentran dentro del directorio que especificamos anteriormente.
 
-![17]()
+![17](https://github.com/Regnierd/FTP/blob/main/ConstruccionServicioEmpresa/img/16.png)
 
 <a name="6"></a>
 
 ### 6. Creación del servicio SFTP
 Como el cliente también quiere tener un servicio para transferir archivos usaremos el servicio <b>SFTP</b>. Para ello instalaremos<b> vsftpd</b> que es el servicio seguro de <b>FTP</b>.
 
-![18]()
+![18](https://github.com/Regnierd/FTP/blob/main/ConstruccionServicioEmpresa/img/18.PNG)
 
 Una vez instalado, comprobamos que está activo y funcionando correctamente.
 Usaremos el comando: <b>sudo systemctl status vsftpd.service</b>
 
-![19]()
+![19](https://github.com/Regnierd/FTP/blob/main/ConstruccionServicioEmpresa/img/19.PNG)
 
 Ahora ya podremos acceder al servicio SFTP con el siguiente comando: <b>sftp usuario@ip-servidor.</b>
 
-![20]()
+![20](https://github.com/Regnierd/FTP/blob/main/ConstruccionServicioEmpresa/img/20.PNG)
 
 <a name="7"></a>
 
@@ -125,30 +125,30 @@ Ahora desde un ordenador diferente podemos comprobar si podemos acceder al servi
 
 Para que podamos acceder directamente al directorio que solo puede acceder el usuario mediante el servicio SFTP, tendremos que configurar un archivo de ssh, asignando directamente la ruta del directorio y agregando las siguiente líneas al fichero.
 
-![21]()
+![21](https://github.com/Regnierd/FTP/blob/main/ConstruccionServicioEmpresa/img/24.PNG)
 
 Una vez hecho esto, abrimos Filezilla y rellenamos los campos para poder acceder al servidor. En el servidor tendremos que poner sftp://ip-servidor, un nombre de usuario y la contraseña. Como podemos comprobar que se conecta al servidor y estamos en la ruta sftp, ya que abajo a la derecha nos sale el archivo index.php.
 
-![22]()
+![22](https://github.com/Regnierd/FTP/blob/main/ConstruccionServicioEmpresa/img/23.PNG)
 
 <a name="8"></a>
 
 ### 8. Añadiendo subdominio /phpmyadmin
 Por último, el cliente nos ha pedido un gestor de base de datos gráfico, el cual tendremos PHPMyAdmin y la base de datos estará corriendo en MySQL. Como hemos dicho al principio usaremos Docker-Compose, para tener dos contenedores que tengan los dos servicios requeridos. Levantamos los dos contenedores y vemos como están activos.
 
-![23]()
+![23](https://github.com/Regnierd/FTP/blob/main/ConstruccionServicioEmpresa/img/25.PNG)
 
 Para poder acceder al gestor gráfico PHPMyAdmin, tendremos que actualizar el archivo de Apache de nuestro sitio web. Agregaremos la siguiente línea de comando.
 
-![24]()
+![24](https://github.com/Regnierd/FTP/blob/main/ConstruccionServicioEmpresa/img/21.PNG)
 
 Volvemos a resetear el servicio.
 
-![25]()
+![25](https://github.com/Regnierd/FTP/blob/main/ConstruccionServicioEmpresa/img/10.png)
 
 Volvemos a nuestro navegador y colocamos en la URL <b>www.javierlpsystem.com/phpmyadmin</b> y nos debería de salir el login para poder acceder al servicio.
 
-![26]()
+![26](https://github.com/Regnierd/FTP/blob/main/ConstruccionServicioEmpresa/img/22.PNG)
 
 
 
